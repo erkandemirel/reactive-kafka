@@ -1,7 +1,6 @@
 package com.reactive.kafka.config;
 
 import com.reactive.kafka.model.ConsumerSample;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +13,7 @@ import java.util.Collections;
 public class ReactiveKafkaConsumerConfig {
 
     @Bean
-    public ReceiverOptions<String, ConsumerSample> kafkaReceiver(@Value(value = "consumer_topic") String topic, KafkaProperties kafkaProperties) {
+    public ReceiverOptions<String, ConsumerSample> kafkaReceiver(String topic, KafkaProperties kafkaProperties) {
         ReceiverOptions<String, ConsumerSample> basicReceiverOptions = ReceiverOptions.create(kafkaProperties.buildConsumerProperties());
         return basicReceiverOptions.subscription(Collections.singletonList(topic));
     }
