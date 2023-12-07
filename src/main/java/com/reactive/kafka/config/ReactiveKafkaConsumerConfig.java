@@ -14,7 +14,7 @@ import java.util.Collections;
 public class ReactiveKafkaConsumerConfig {
 
     @Bean
-    public ReceiverOptions<String, ConsumerSample> kafkaReceiver(@Value(value = "${CONSUMER_TOPIC}") String topic, KafkaProperties kafkaProperties) {
+    public ReceiverOptions<String, ConsumerSample> kafkaReceiver(@Value(value = "consumer_topic") String topic, KafkaProperties kafkaProperties) {
         ReceiverOptions<String, ConsumerSample> basicReceiverOptions = ReceiverOptions.create(kafkaProperties.buildConsumerProperties());
         return basicReceiverOptions.subscription(Collections.singletonList(topic));
     }

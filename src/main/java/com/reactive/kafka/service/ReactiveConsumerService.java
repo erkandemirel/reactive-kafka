@@ -1,22 +1,19 @@
 package com.reactive.kafka.service;
 
 import com.reactive.kafka.model.ConsumerSample;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.kafka.core.reactive.ReactiveKafkaConsumerTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class ReactiveConsumerService {
 
-    Logger log = LoggerFactory.getLogger(ReactiveConsumerService.class);
     private final ReactiveKafkaConsumerTemplate<String, ConsumerSample> reactiveKafkaConsumerTemplate;
-
-    public ReactiveConsumerService(ReactiveKafkaConsumerTemplate<String, ConsumerSample> reactiveKafkaConsumerTemplate) {
-        this.reactiveKafkaConsumerTemplate = reactiveKafkaConsumerTemplate;
-    }
 
     private Flux<ConsumerSample> consume() {
         return reactiveKafkaConsumerTemplate
