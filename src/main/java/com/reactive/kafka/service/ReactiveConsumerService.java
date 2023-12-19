@@ -13,10 +13,10 @@ import reactor.core.publisher.Flux;
 @RequiredArgsConstructor
 public class ReactiveConsumerService {
 
-    private final ReactiveKafkaConsumerTemplate<String, ConsumerSample> reactiveKafkaConsumerTemplate;
+    private final ReactiveKafkaConsumerTemplate<String, ConsumerSample> reactiveKafkaConsumer;
 
     private Flux<ConsumerSample> consume() {
-        return reactiveKafkaConsumerTemplate
+        return reactiveKafkaConsumer
                 .receiveAutoAck()
                 .doOnNext(consumerRecord -> log.info("received key={}, value={} from topic={}, offset={}",
                         consumerRecord.key(),
