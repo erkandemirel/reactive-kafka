@@ -26,6 +26,7 @@ public class ReactiveConsumerService {
                 )
                 .map(ConsumerRecord::value)
                 .doOnNext(message -> log.info("successfully consumed {}={}", ConsumerSample.class.getSimpleName(), message))
-                .doOnError(throwable -> log.error("something bad happened while consuming : {}", throwable.getMessage()));
+                .doOnError(throwable -> log.error("something bad happened while consuming : {}", throwable.getMessage()))
+                .publish();
     }
 }
